@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Enemy
+  - Enemies
+  - Bullet
+  - Shell
+  - UFO
   layers:
   - Default
   - TransparentFX
@@ -14,11 +19,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Bullet
+  - EnemyGroup
+  - Shell
+  - Player
   - 
   - 
   - 

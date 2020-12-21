@@ -7,17 +7,16 @@ public class PlayerScript : MonoBehaviour
 {
     public float movementSpeed;
     float _movementSpeed;
-    bool playerLock;
     // Start is called before the first frame update
     void Start()
     {
-        //movementSpeed = _movementSpeed;
+        _movementSpeed = movementSpeed;
     }
-
     // Update is called once per frame
     void Update()
     {
         PlayerMovement();
+
     }
 
     void PlayerMovement()
@@ -26,26 +25,35 @@ public class PlayerScript : MonoBehaviour
             transform.position += Vector3.right * movementSpeed * Time.deltaTime;
         else if (Input.GetAxis("Horizontal") < 0)
             transform.position += Vector3.left * movementSpeed * Time.deltaTime;
-
-/*        if (playerLock)
-            movementSpeed = 0;
-        else
-            movementSpeed = _movementSpeed;*/
+        if (transform.position.x > 5.43f)
+            ResetRightMove();
+        if (transform.position.x < -5.43f)
+            ResetLeftMove();
     }
-
-    void OnTriggerEnter2D(Collider2D collision)
+    void ResetRightMove()
     {
-
+        movementSpeed = 0;
+        transform.position = new Vector3(5.3f, transform.position.y);
+        movementSpeed = _movementSpeed;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    void ResetLeftMove()
     {
-        if ((collision.gameObject.tag == "Wall"))
+        movementSpeed = 0;
+        transform.position = new Vector3(-5.3f, transform.position.y);
+        movementSpeed = _movementSpeed;
+    }
+/*    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Wall")
         {
-            Debug.Log("sadsa");
-
-            playerLock = true;
+            Debug.Log(transform.position.x);
         }
     }
-
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Wall")
+        {
+            movementSpeed = _movementSpeed;
+        }
+    }*/
 }
